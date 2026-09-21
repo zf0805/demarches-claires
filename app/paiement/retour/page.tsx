@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import { PaymentReturn } from "@/components/payment-return"; import { SiteHeader } from "@/components/site-header"; import { SiteFooter } from "@/components/site-footer";
+export const metadata: Metadata = { title: "Confirmation de paiement", robots: { index: false, follow: false } }; export default function PaymentReturnPage() { return <div className="min-h-screen"><SiteHeader /><main className="hero-grid"><div className="mx-auto max-w-3xl px-5 py-20 md:px-8"><PaymentReturn /></div></main><SiteFooter /></div>; }

@@ -1,0 +1,1 @@
+import { ResetPassword } from "@/components/token-action"; import { AuthPageShell } from "@/components/auth-page-shell"; export default function ResetPage() { return <AuthPageShell><ResetPassword /></AuthPageShell>; }

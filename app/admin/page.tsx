@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import { AdminDashboard } from "@/components/admin-dashboard"; import { SiteHeader } from "@/components/site-header";
+export const metadata: Metadata = { title: "Administration", robots: { index: false, follow: false } }; export default function AdminPage() { return <div className="min-h-screen hero-grid"><SiteHeader /><main className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-14"><AdminDashboard /></main></div>; }

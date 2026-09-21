@@ -1,0 +1,6 @@
+import { z } from "zod";
+import { getDatabase } from "@/lib/auth";
+import { clientIdentifier, rateLimit, verifyMutationOrigin } from "@/lib/security";
+
+const schema = z.object({ email: z.string().email().max(254), subject: z.string().trim().min(3).max(120), message: z.string().trim().min(10).max(3000), website: z.string().max(0).optional() });
+export async function POST(request: Request) { if (!verifyMutationOrigin(request)) return Response.json({ error: "Requête refusée." }, { status: 403 }); if (!rateLimit(`contact:${clientIdentifier(request)}`, 3, 60 * 60_000).allowed) return Response.json({ error: "Trop de messages. Réessayez plus tard." }, { status: 429 }); const parsed = schema.safeParse(await request.json().catch(() => null)); if (!parsed.success) return Response.json({ error: "Vérifiez les champs du formulaire." }, { status: 400 }); try { await getDatabase().prepare("INSERT INTO contacts (id, email, subject, message, created_at, status) VALUES (?, ?, ?, ?, ?, 'new')").bind(crypto.randomUUID(), parsed.data.email, parsed.data.subject, parsed.data.message, new Date().toISOString()).run(); return Response.json({ ok: true }); } catch { return Response.json({ error: "Envoi indisponible." }, { status: 503 }); } }

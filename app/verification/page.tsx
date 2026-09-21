@@ -1,0 +1,1 @@
+import { VerifyEmail } from "@/components/token-action"; import { AuthPageShell } from "@/components/auth-page-shell"; export default function VerificationPage() { return <AuthPageShell><VerifyEmail /></AuthPageShell>; }

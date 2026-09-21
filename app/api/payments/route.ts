@@ -1,0 +1,2 @@
+import { getDatabase, requireUser } from "@/lib/auth";
+export async function GET(request: Request) { try { const user = await requireUser(request); const result = await getDatabase().prepare("SELECT id, kind, status, amount_cents AS amountCents, currency, provider_subscription_id AS subscriptionId, created_at AS createdAt FROM payments WHERE user_id = ? ORDER BY created_at DESC").bind(user.id).all(); return Response.json({ payments: result.results }); } catch { return Response.json({ error: "Connexion requise." }, { status: 401 }); } }

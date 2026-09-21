@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import { Dashboard } from "@/components/dashboard"; import { SiteHeader } from "@/components/site-header"; import { SiteFooter } from "@/components/site-footer";
+export const metadata: Metadata = { title: "Tableau de bord", robots: { index: false, follow: false } }; export default function DashboardPage() { return <div className="min-h-screen"><SiteHeader /><main className="hero-grid"><div className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-14"><Dashboard /></div></main><SiteFooter /></div>; }

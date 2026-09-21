@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import { ContactForm } from "@/components/contact-form"; import { ContentPage } from "@/components/content-page";
+export const metadata: Metadata = { title: "Contact" }; export default function ContactPage() { return <ContentPage eyebrow="Contact" title="Une question, une source à corriger ou une demande sur vos données ?" intro="Écrivez-nous sans transmettre de document ni de donnée sensible. Pour une urgence ou une décision officielle, contactez directement l’administration concernée."><ContactForm /></ContentPage>; }

@@ -1,0 +1,3 @@
+import type { MetadataRoute } from "next";
+const base = process.env.NEXT_PUBLIC_SITE_URL || "https://demarches-claires.example";
+export default function sitemap(): MetadataRoute.Sitemap { const routes = ["", "/demarches/demenagement", "/changement-adresse", "/resiliation-demenagement", "/assistant", "/tarifs", "/faq", "/a-propos", "/contact", "/mentions-legales", "/confidentialite", "/conditions"]; return routes.map((route) => ({ url: `${base}${route}`, lastModified: new Date("2026-09-21"), changeFrequency: route === "" ? "weekly" : "monthly", priority: route === "" ? 1 : route.startsWith("/demarches") || route === "/changement-adresse" ? .9 : .6 })); }
